@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Banner from '@/Components/Banner.vue';
@@ -26,6 +26,29 @@ const switchToTeam = (team) => {
 const logout = () => {
     router.post(route('logout'));
 };
+
+onMounted(() => {
+    if (typeof KTMenu !== 'undefined') {
+        KTMenu.init();
+    }
+    if (typeof KTScroll !== 'undefined') {
+        KTScroll.init();
+    }
+
+    if (typeof KTLayoutAside !== 'undefined' && KTLayoutAside.init) {
+        KTLayoutAside.init();
+    }
+
+    if (typeof KTToggle !== 'undefined' && KTToggle.init) {
+        KTToggle.init()
+    }
+
+    if (typeof KTDrawer !== 'undefined') {
+        KTDrawer.init();
+    }
+
+});
+
 </script>
 
 <template>
